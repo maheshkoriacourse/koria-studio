@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/koria-studio/fonts/inter-400 600-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/koria-studio/fonts/sora-400 800-normal.woff2") format("woff2");
+}

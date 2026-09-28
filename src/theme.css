@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============ Self-hosted fonts (DESIGN.md §2) ============ */
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/koria-studio/fonts/sora-var.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/koria-studio/fonts/inter-var.woff2") format("woff2");
+}
+
+/* ============ Koria Studio design tokens (DESIGN.md §1–5) ============ */
+:root {
+  --ks-background: #fafaff;
+  --ks-foreground: #191926;
+  --ks-surface: #ffffff;
+  --ks-line: #e5e7f2;
+
+  --ks-brand: #a78bfa;
+  --ks-brand-strong: #c084fc;
+  --ks-accent: #22d3ee;
+  --ks-accent-2: #f0abfc;
+  --ks-success: #34d399;
+
+  --ks-muted: #5d5d74;
+  --ks-ink: #0b0b12;
+
+  --ks-brand-ink: #7c3aed;
+  --ks-accent-ink: #0891b2;
+
+  --ks-font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --ks-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Spacing rhythm 4/8/16/24/48 (DESIGN.md §3) */
+  --ks-space-1: 4px;
+  --ks-space-2: 8px;
+  --ks-space-3: 16px;
+  --ks-space-4: 24px;
+  --ks-space-5: 48px;
+
+  --ks-radius-md: 8px;
+  --ks-radius-lg: 12px;
+  --ks-radius-xl: 16px;
+  --ks-radius-2xl: 24px;
+  --ks-radius-full: 9999px;
+
+  --ks-shadow-ambient: 0 8px 30px rgba(2, 6, 23, 0.08);
+  --ks-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark {
+  --ks-background: #05050a;
+  --ks-foreground: #f4f4fb;
+  --ks-surface: #0b0b12;
+  --ks-line: #1c1c28;
+  --ks-muted: #a5a5c0;
+  --ks-brand-ink: #a78bfa;
+  --ks-accent-ink: #22d3ee;
+  --ks-shadow-ambient: 0 8px 30px rgba(2, 6, 23, 0.35);
+}
+
+/* ============ Tailwind theme mapping ============ */
+@theme inline {
+  --color-background: var(--ks-background);
+  --color-foreground: var(--ks-foreground);
+  --color-surface: var(--ks-surface);
+  --color-line: var(--ks-line);
+  --color-brand: var(--ks-brand);
+  --color-brand-strong: var(--ks-brand-strong);
+  --color-accent: var(--ks-accent);
+  --color-accent-2: var(--ks-accent-2);
+  --color-success: var(--ks-success);
+  --color-muted: var(--ks-muted);
+  --color-ink: var(--ks-ink);
+  --color-brand-ink: var(--ks-brand-ink);
+  --color-accent-ink: var(--ks-accent-ink);
+
+  --font-display: var(--ks-font-display);
+  --font-body: var(--ks-font-body);
+
+  --radius-md: var(--ks-radius-md);
+  --radius-lg: var(--ks-radius-lg);
+  --radius-xl: var(--ks-radius-xl);
+  --radius-2xl: var(--ks-radius-2xl);
+  --radius-full: var(--ks-radius-full);
+}
+
+/* ============ Base ============ */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--ks-background);
+  color: var(--ks-foreground);
+  font-family: var(--ks-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.25s var(--ks-ease),
+    color 0.25s var(--ks-ease);
+}
+
+.font-display {
+  font-family: var(--ks-font-display);
+}
+
+::selection {
+  background: rgba(167, 139, 250, 0.35);
+}
+
+/* Visible focus ring everywhere (DESIGN.md §8) */
+:focus-visible {
+  outline: 2px solid var(--ks-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============ Keyframes (DESIGN.md §6) ============ */
+@keyframes ks-aurora {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes ks-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, -8%, 0) scale(1.12);
+  }
+}
+
+@keyframes ks-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-7%, 6%, 0) scale(1.08);
+  }
+}
+
+@keyframes ks-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-aurora {
+  animation: ks-aurora 10s ease infinite;
+}
+
+.animate-drift-a {
+  animation: ks-drift-a 22s ease-in-out infinite;
+}
+
+.animate-drift-b {
+  animation: ks-drift-b 18s ease-in-out infinite;
+}
+
+.animate-marquee-track {
+  animation: ks-marquee 30s linear infinite;
+}
+
+.group:hover .group-pause {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora,
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-marquee-track {
+    animation: none;
+  }
+  .animate-aurora {
+    background-position: 0% 50%;
+  }
+}
+
+/* ============ Utilities ============ */
+.text-gradient {
+  background-image: linear-gradient(135deg, #a78bfa, #22d3ee 50%, #f0abfc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ks-grid-lines {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--ks-line) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--ks-line) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 48px 48px;
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    black 30%,
+    transparent 75%
+  );
+}
+
+.dark {
+  color-scheme: dark;
+}
+html:not(.dark) {
+  color-scheme: light;
+}

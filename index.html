@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/koria-studio/favicon.svg"
+    />
+    <link
+      rel="preload"
+      href="/koria-studio/fonts/sora-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/koria-studio/fonts/inter-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Koria Studio — We build brands with AI. AI video production, web apps, data products and automation for modern teams."
+    />
+    <meta name="theme-color" content="#05050a" />
+    <meta property="og:title" content="Koria Studio — We build brands with AI" />
+    <meta
+      property="og:description"
+      content="AI video production, web apps, data products and automation for modern teams."
+    />
+    <meta property="og:type" content="website" />
+    <title>Koria Studio — We build brands with AI</title>
+    <script>
+      // Set theme before first paint to avoid FOUC (default: dark)
+      try {
+        var t = localStorage.getItem("ks-theme");
+        if (t === "light") {
+          document.documentElement.classList.remove("dark");
+          document.documentElement.classList.add("light");
+        } else {
+          document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("light");
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
